@@ -4,7 +4,7 @@ const { RNZxcvbn } = NativeModules;
 
 export const score = (password) => {
   if (!password) {
-    return Promise.resolve(0);
+    return Promise.resolve({ score: 0, feedback: defaultFeedback });
   }
   let manualFeedback = defaultFeedback;
   const { score, feedback, sequence }  = RNZxcvbn.score(password);
