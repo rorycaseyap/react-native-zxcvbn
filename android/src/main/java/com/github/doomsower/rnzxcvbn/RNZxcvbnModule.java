@@ -28,6 +28,10 @@ public class RNZxcvbnModule extends ReactContextBaseJavaModule {
             zxcvbn = new Zxcvbn();
         }
         Strength strength = zxcvbn.measure(password);
-        promise.resolve(strength.getScore());
+        WritableMap ret = Arguments.createMap();
+        map.putInt("score", Strength.getScore());
+        map.putArray("sequence", Strength.getSequence());
+        map.putString("feedback", Strength.getFeedback());
+        promise.resolve(map);
     }
 }

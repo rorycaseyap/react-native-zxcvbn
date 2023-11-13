@@ -16,7 +16,11 @@ RCT_EXPORT_METHOD(score: (NSString*)password
         zxcvbn = [[DBZxcvbn alloc] init];
     }
     DBResult *result = [zxcvbn passwordStrength:password];
-    resolve([NSNumber numberWithInt:result.score]);
+    NSDictionary *dictRes = @{
+        @"score":@(result.score),
+        @"sequence":@(result.matchSequence)
+    };
+    resolve(dictRes);
 }
 
 @end
