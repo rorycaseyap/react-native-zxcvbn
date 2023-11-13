@@ -18,7 +18,7 @@ RCT_EXPORT_METHOD(score: (NSString*)password
     DBResult *result = [zxcvbn passwordStrength:password];
     NSDictionary *dictRes = @{
         @"score":@(result.score),
-        @"sequence":@(result.matchSequence)
+        @"sequence":result.matchSequence
     };
     resolve(dictRes);
 }
